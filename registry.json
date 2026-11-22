@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "yume",
+  "homepage": "https://github.com/black/kai",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:component",
+      "title": "Button",
+      "description": "A simple button component.",
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:component",
+          "target":"components/yume/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tag",
+      "type": "registry:component",
+      "title": "Tag",
+      "description": "A simple tag component.",
+      "files": [
+        {
+          "path": "components/ui/tag.tsx",
+          "type": "registry:component",
+          "target":"components/yume/tag.tsx"
+        }
+      ]
+    }
+  ]
+}
