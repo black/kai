@@ -12,7 +12,7 @@
         {
           "path": "components/ui/button.tsx",
           "type": "registry:component",
-          "target":"components/yume/button.tsx"
+          "target":"components/kai/button.tsx"
         }
       ]
     },
@@ -25,7 +25,7 @@
         {
           "path": "components/ui/tag.tsx",
           "type": "registry:component",
-          "target":"components/yume/tag.tsx"
+          "target":"components/kai/tag.tsx"
         }
       ]
     }
