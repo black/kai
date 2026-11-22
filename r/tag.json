@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tag",
+  "title": "Tag",
+  "description": "A simple tag component.",
+  "files": [
+    {
+      "path": "components/ui/tag.tsx",
+      "content": "interface Props{\r\n    label:string;\r\n}\r\nconst Tag = (props:Props) =>{\r\n    const {label} = props\r\n    return(\r\n        <div className=\"rounded-full font-light border border-gray-200 whitespace-nowrap py-3 px-6\">\r\n             {label}   \r\n        </div>\r\n    )\r\n}\r\n\r\nexport default Tag",
+      "type": "registry:component",
+      "target": "components/yume/tag.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
