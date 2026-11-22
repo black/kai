@@ -3,6 +3,13 @@
   "name": "tag",
   "title": "Tag",
   "description": "A simple tag component.",
+  "type": "registry:component", 
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "lucide-react",
+    "tailwind-merge"
+  ],
   "files": [
     {
       "path": "components/ui/tag.tsx",
@@ -11,5 +18,7 @@
       "target": "components/kai/tag.tsx"
     }
   ],
-  "type": "registry:component"
+  "meta": {
+    "version": "1.0.0"
+  }
 }

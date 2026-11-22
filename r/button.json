@@ -3,6 +3,13 @@
   "name": "button",
   "title": "Button",
   "description": "A simple button component.",
+  "type": "registry:component",
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "lucide-react",
+    "tailwind-merge"
+  ],
   "files": [
     {
       "path": "components/ui/button.tsx",
@@ -11,5 +18,7 @@
       "target": "components/kai/button.tsx"
     }
   ],
-  "type": "registry:component"
+  "meta": {
+    "version": "1.0.0"
+  }
 }
