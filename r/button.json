@@ -8,7 +8,7 @@
       "path": "components/ui/button.tsx",
       "content": "interface Props{\r\n    label?:string;\r\n    onClick?: () => void;\r\n}\r\n\r\nconst Button = (props:Props)=>{\r\n    const {label,onClick} = props\r\n    return(\r\n        <button onClick={onClick}>\r\n            {label}\r\n        </button>\r\n    )\r\n}\r\n\r\nexport default Button",
       "type": "registry:component",
-      "target": "components/yume/button.tsx"
+      "target": "components/kai/button.tsx"
     }
   ],
   "type": "registry:component"
