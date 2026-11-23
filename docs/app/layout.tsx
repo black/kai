@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import SidebarNav from "@/components/ui/SidebarNav";
+import { getComponentDocs, registryInfo } from "@/lib/registry";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +25,41 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <main className="flex min-h-screen bg-white text-neutral-900">
+          <aside className="fixed inset-y-0 left-0 z-20 flex w-64 flex-col border-r bg-white px-5 py-6">
+            <div className="mb-8">
+              <h1 className="text-xl font-semibold tracking-tight">KAI UI</h1>
+              <p className="mt-1 text-sm text-neutral-500">Component Registry</p>
+            </div>
+
+            <div>
+              <p className="mb-2 px-3 text-xs font-medium tracking-wider text-neutral-400">
+                COMPONENTS
+              </p>
+              <SidebarNav
+                items={getComponentDocs().map(({ name, title }) => ({ name, title }))}
+              />
+            </div>
+
+            {registryInfo.homepage && (
+              <div className="mt-auto border-t pt-4">
+                <a
+                  href={registryInfo.homepage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between rounded-md px-3 py-2 text-sm text-neutral-600 hover:bg-neutral-50"
+                >
+                  GitHub
+                  <span>↗</span>
+                </a>
+              </div>
+            )}
+          </aside>
+
+          <section className="ml-64 min-w-0 flex-1">{children}</section>
+        </main>
+      </body>
     </html>
   );
 }

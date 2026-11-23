@@ -41,6 +41,8 @@ jobs:
 
       - name: Build documentation
         working-directory: docs
+        env:
+          PAGES_BASE_PATH: /kai
         run: npm run build
 
       - name: Copy registry

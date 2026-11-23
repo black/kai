@@ -14,6 +14,8 @@
     "utils": "@/lib/utils"
   },
   "registries": {
-    "@kai": "https://black.github.io/kai/r/{name}.json"
+    "@kai": {
+      "url":"https://black.github.io/kai/r/{name}.json"
+    }
   }
 }
