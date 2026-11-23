@@ -1,15 +1,26 @@
+import { codeToHtml } from "shiki";
+import CopyButton from "@/components/ui/CopyButton";
 
 interface Props {
-    children: React.ReactNode
+  code: string;
+  lang?: string;
+  /** Shown in the block's header bar, e.g. a file path. */
+  title?: string;
 }
 
-const CodeBlock = (props: Props) => {
-    const { children } = props
-    return (
-        <pre className="overflow-x-auto rounded-lg border bg-neutral-50 p-4 text-sm leading-6 text-neutral-800">
-            <code>{children}</code>
-        </pre>
-    );
-}
+/** Syntax-highlighted code on a dark panel, rendered at build time. */
+const CodeBlock = async ({ code, lang = "tsx", title }: Props) => {
+  const html = await codeToHtml(code.trimEnd(), { lang, theme: "vesper" });
 
-export default CodeBlock
+  return (
+    <div className="code-block overflow-hidden rounded-lg bg-night text-night-ink">
+      <div className="flex h-10 items-center justify-between border-b border-night-line pl-4 pr-1">
+        <span className="font-mono text-xs text-night-muted">{title ?? lang}</span>
+        <CopyButton value={code} />
+      </div>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </div>
+  );
+};
+
+export default CodeBlock;

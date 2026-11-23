@@ -73,6 +73,22 @@ const docs: ComponentDoc[] = registry.items.map((item) => ({
   }),
 }));
 
+// Public URL template of the registry, e.g. https://…/r/{name}.json
+const componentsJson = JSON.parse(
+  fs.readFileSync(path.join(DOCS_ROOT, "components.json"), "utf-8"),
+);
+const kaiRegistry = componentsJson.registries?.["@kai"];
+const registryUrlTemplate: string | undefined =
+  typeof kaiRegistry === "string" ? kaiRegistry : kaiRegistry?.url;
+
+export function getRegistryUrlTemplate(): string | undefined {
+  return registryUrlTemplate;
+}
+
+export function getRegistryItemUrl(name: string): string | undefined {
+  return registryUrlTemplate?.replace("{name}", name);
+}
+
 export const registryInfo = { name: registry.name, homepage: registry.homepage };
 
 export function getComponentDocs(): ComponentDoc[] {
