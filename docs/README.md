@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KAI UI — documentation site
 
-## Getting Started
+The Next.js site behind https://black.github.io/kai/. For how to use the components and how the registry works, see the [project README](../README.md).
 
-First, run the development server:
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build   # static export to out/
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How pages are generated
 
-## Learn More
+Every page comes from `../registry.json` plus files on disk. No page is written by hand.
 
-To learn more about Next.js, take a look at the following resources:
+| Source | Becomes |
+| --- | --- |
+| `../registry.json` item: `name`, `title`, `description` | Sidebar entry, `/components/<name>` page, title and description, install command |
+| `components/kai/<name>.tsx` (the item's `target`) | The **Source** code block |
+| `examples/<name>.tsx` (default export) | The live **Preview** and the **Usage** code block |
+| `components.json` → `registries["@kai"]` | The "Registry JSON" link and the setup snippet on the home page |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To add a component, follow [Adding a component](../README.md#adding-a-component) in the project README.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Where things live
 
-## Deploy on Vercel
+| Path | What it does |
+| --- | --- |
+| `lib/registry.ts` | Reads the registry and files once at build time |
+| `app/page.tsx` | Landing page |
+| `app/components/layout.tsx` | Sidebar layout for component pages |
+| `app/components/[name]/page.tsx` | One static page per registry item |
+| `components/ui/ComponentPage.tsx` | Template for a component page |
+| `components/ui/CodeBlock.tsx` | Code highlighted with Shiki at build time |
+| `components/ui/ThemeToggle.tsx` | Light/dark switch, saved in `localStorage` |
+| `app/globals.css` | Color tokens for light and dark mode |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Static export and GitHub Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`next.config.ts` sets `output: "export"` and reads the base path from `PAGES_BASE_PATH`. The deploy workflow sets it to `/kai`. Cache Components and Partial Prefetching are turned off because they need a running Next.js server.
