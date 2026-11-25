@@ -49,7 +49,7 @@ kai/
 │   ├── examples/          # One demo per component: rendered as the preview, shown as "Usage"
 │   ├── lib/registry.ts    # Reads registry.json + files on disk to build every docs page
 │   ├── components/ui/     # Docs-site UI (page template, sidebar, code blocks, theme toggle)
-│   └── app/               # Routes: / (landing) and /components/[name]
+│   └── app/               # Routes: /components/[name] (/ redirects to the first component)
 └── .github/workflows/
     └── deploy-docs.yml    # Builds the docs and publishes them with r/ to GitHub Pages
 ```

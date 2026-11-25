@@ -24,7 +24,9 @@ Every page comes from `../registry.json` plus files on disk. No page is written 
 | `../registry.json` item: `name`, `title`, `description` | Sidebar entry, `/components/<name>` page, title and description, install command |
 | `components/kai/<name>.tsx` (the item's `target`) | The **Source** code block |
 | `examples/<name>.tsx` (default export) | The live **Preview** and the **Usage** code block |
-| `components.json` → `registries["@kai"]` | The "Registry JSON" link and the setup snippet on the home page |
+| `components.json` → `registries["@kai"]` | The "Registry JSON" link on each component page |
+
+There is no landing page: `/` redirects to the first component in `registry.json`.
 
 To add a component, follow [Adding a component](../README.md#adding-a-component) in the project README.
 
@@ -33,7 +35,7 @@ To add a component, follow [Adding a component](../README.md#adding-a-component)
 | Path | What it does |
 | --- | --- |
 | `lib/registry.ts` | Reads the registry and files once at build time |
-| `app/page.tsx` | Landing page |
+| `app/page.tsx` | Redirects `/` to the first component |
 | `app/components/layout.tsx` | Sidebar layout for component pages |
 | `app/components/[name]/page.tsx` | One static page per registry item |
 | `components/ui/ComponentPage.tsx` | Template for a component page |

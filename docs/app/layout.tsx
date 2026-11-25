@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const first = getComponentDocs()[0];
+  const homeHref = first ? `/components/${first.name}` : "/";
 
   return (
     <html
@@ -37,20 +38,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full">
         <header className="sticky top-0 z-30 bg-paper/90 backdrop-blur-md">
           <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 sm:px-6">
-            <Link href="/" className="flex items-center gap-3">
+            <Link href={homeHref} className="flex items-center gap-3">
               <Logo />
               <span className="text-[15px]">KAI UI</span>
             </Link>
 
             <nav className="flex items-center gap-6 text-sm">
-              {first && (
-                <Link
-                  href={`/components/${first.name}`}
-                  className="hidden transition-colors hover:text-blue sm:block"
-                >
-                  Components
-                </Link>
-              )}
               {registryInfo.homepage && (
                 <a
                   href={registryInfo.homepage}
